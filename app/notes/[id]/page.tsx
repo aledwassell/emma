@@ -1,7 +1,7 @@
+import {db} from '../../../firestore';
 import Note from '../Note';
 
 import {doc, getDoc} from 'firebase/firestore';
-import {db} from '../page';
 
 async function getNote(id: string) {
   const note = await getDoc(doc(db, 'notes', id));

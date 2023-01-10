@@ -3,7 +3,7 @@
 import {useRouter} from 'next/navigation';
 
 import {doc, deleteDoc} from 'firebase/firestore';
-import {db} from './page';
+import {db} from '../../firestore';
 
 export default function DeleteNote(params: any) {
   const router = useRouter();

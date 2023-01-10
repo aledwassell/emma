@@ -4,7 +4,7 @@ import {useRouter} from 'next/navigation';
 import {useState} from 'react';
 
 import {collection, addDoc} from 'firebase/firestore';
-import {db} from './page';
+import {db} from '../../firestore';
 
 export default function CreateNote() {
   const [title, setTitle] = useState('');

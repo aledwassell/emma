@@ -4,22 +4,20 @@ import CreateNote from './CreateNote';
 import DeleteNote from './DeleteNote';
 import Note from './Note';
 
-import {collection, getDocs} from 'firebase/firestore';
-import {db} from '../../firestore';
-
-async function getNotes() {
-  const notes = await getDocs(collection(db, 'notes'));
-  return notes.docs.map(doc => ({id: doc.id, ...doc.data()})) as any[];
+async function getQuotes() {
+  const res = await fetch('http://localhost:3000/api/quote', {method: 'GET'});
+  const data = await res.json();
+  return data;
 }
 
 export default async function NotesPage() {
-  const notes = await getNotes();
+  const quotes = await getQuotes();
 
   return (
     <div>
       <h1>Notes!!</h1>
       <div className={styles.grid}>
-        {notes?.map(note => {
+        {quotes?.map(note => {
           return (
             <div key={note.id}>
               <Link href={`/notes/${note.id}`}>

@@ -2,22 +2,25 @@
 
 import {useRouter} from 'next/navigation';
 import {useState} from 'react';
+import {fetchUrl} from '../../utils/constants';
 
-import {collection, addDoc} from 'firebase/firestore';
-import db from '../../utils/db';
-
-export default function CreateNote() {
+export default function CreateQuote() {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
 
   const router = useRouter();
 
   const create = async () => {
-    const collectionRef = collection(db, 'notes');
-    await addDoc(collectionRef, {
-      title,
-      content,
-      created: new Date().toDateString(),
+    await fetch(`${fetchUrl}/api/quote`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        title,
+        content,
+        created: new Date().toDateString(),
+      }),
     });
 
     setContent('');
@@ -28,7 +31,7 @@ export default function CreateNote() {
 
   return (
     <form onSubmit={create}>
-      <h3>Create a new Note</h3>
+      <h3>Create a new Quote</h3>
       <input
         type="text"
         placeholder="Title"
@@ -40,7 +43,7 @@ export default function CreateNote() {
         value={content}
         onChange={e => setContent(e.target.value)}
       />
-      <button type="submit">Create note</button>
+      <button type="submit">Create</button>
     </form>
   );
 }

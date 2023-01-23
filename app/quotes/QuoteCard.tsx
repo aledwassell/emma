@@ -1,7 +1,7 @@
 import styles from './Notes.module.css';
 
-export default function Note({note}: any) {
-  const {title, content, created} = note || {};
+export default function QuoteCard({data}: any) {
+  const {title, content, created} = data || {};
 
   return (
     <div className={styles.note}>

@@ -6,11 +6,9 @@ import DeleteQuote from './DeleteQuote';
 import {fetchUrl, Quote} from '../../utils/constants';
 
 async function getQuotes(): Promise<Quote[]> {
-  // const res = await fetch(`${fetchUrl}/api/quote`, {method: 'GET'});
-  // const data = await res.json();
-  return [
-    {id: 'asdfdf', title: 'asdfdf', content: 'asdfdf', created: 'asdfdfd'},
-  ];
+  const res = await fetch(`${fetchUrl}/api/quote`, {method: 'GET'});
+  const data = await res.json();
+  return data;
 }
 
 export default async function NotesPage() {

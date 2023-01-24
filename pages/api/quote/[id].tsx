@@ -1,27 +1,34 @@
 import {NextApiRequest, NextApiResponse} from 'next';
-import {doc, collection, getDocs, deleteDoc} from 'firebase/firestore';
-import db from '../../utils/db';
+import {doc, getDoc, deleteDoc} from 'firebase/firestore';
+import db from '../../../utils/db';
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
+  const {id} = req.query;
   try {
-    if (req.method === 'GET') {
-      const quotes = await getDocs(collection(db, 'notes'));
-      const quotesData = quotes.docs.map(doc => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
-      res.status(200).send(quotesData);
-    }
-    if (req.method === 'DELETE') {
-      console.log(req);
-      // const docRef = await doc(db, 'notes', '123');
-      // await deleteDoc(docRef).then(() => res.status(200));
-      res.status(200);
+    switch (req.method) {
+      case 'GET':
+        getById(res, id as string);
+        break;
+      case 'DELETE':
+        deleteById(res, id as string);
+      default:
+        res.status(200).end();
+        break;
     }
   } catch (e) {
     res.status(400).end();
   }
+}
+
+async function getById(res: NextApiResponse, id: string) {
+  const note = await getDoc(doc(db, 'notes', id));
+  res.status(200).json({id: note.id, ...note.data()});
+}
+
+async function deleteById(res: NextApiResponse, id: string) {
+  const docRef = await doc(db, 'notes', id);
+  await deleteDoc(docRef).then(() => res.status(200).end());
 }

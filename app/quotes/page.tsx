@@ -3,12 +3,14 @@ import styles from './Notes.module.css';
 import QuoteCard from './QuoteCard';
 import CreateQuote from './CreateQuote';
 import DeleteQuote from './DeleteQuote';
-import {fetchUrl} from '../../utils/constants';
+import {fetchUrl, Quote} from '../../utils/constants';
 
-async function getQuotes() {
-  const res = await fetch(`${fetchUrl}/api/quote`, {method: 'GET'});
-  const data = await res.json();
-  return data;
+async function getQuotes(): Promise<Quote[]> {
+  // const res = await fetch(`${fetchUrl}/api/quote`, {method: 'GET'});
+  // const data = await res.json();
+  return [
+    {id: 'asdfdf', title: 'asdfdf', content: 'asdfdf', created: 'asdfdfd'},
+  ];
 }
 
 export default async function NotesPage() {

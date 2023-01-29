@@ -4,7 +4,7 @@ import QuoteCard from 'components/QuoteCard';
 import {GetServerSideProps} from 'next';
 import Link from 'next/link';
 import styles from '../../styles/Home.module.scss';
-import {apiUrl, fetchUrl, Quote} from '../../utils/constants';
+import {fetchUrl, Quote} from '../../utils/constants';
 
 type Props = {
   quotes: readonly Quote[];

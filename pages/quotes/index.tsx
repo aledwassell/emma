@@ -11,9 +11,11 @@ type Props = {
 };
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const url = `${fetchUrl}/api/quote`;
+  const url = process.env.API_URL
+    ? `${process.env.API_URL}/api/quote`
+    : 'http://localhost:3000/api/quote';
   await console.log(url);
-  const res = await fetch(`${fetchUrl}/api/quote`, {method: 'GET'});
+  const res = await fetch(url, {method: 'GET'});
   const quotes = await res.json();
   return {props: {quotes}};
 };
@@ -22,7 +24,7 @@ export default function NotesPage({quotes}: Props) {
   return (
     <div>
       <h1>Quotes!!</h1>
-      <p>fetchUrl: {fetchUrl}</p>
+      <p>fetchUrl: {process.env.API_URL}</p>
       <div className={styles.grid}>
         {quotes?.map((quote: any) => {
           return (

@@ -21,6 +21,7 @@ export default function NotesPage({quotes}: Props) {
     <div>
       <h1>Quotes!!</h1>
       {fetchUrl}
+      {process.env.API_URL}
       <div className={styles.grid}>
         {quotes?.map((quote: any) => {
           return (

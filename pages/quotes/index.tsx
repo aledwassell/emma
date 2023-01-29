@@ -20,6 +20,7 @@ export default function NotesPage({quotes}: Props) {
   return (
     <div>
       <h1>Quotes!!</h1>
+      {fetchUrl}
       <div className={styles.grid}>
         {quotes?.map((quote: any) => {
           return (

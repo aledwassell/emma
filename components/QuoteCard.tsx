@@ -1,5 +1,5 @@
-import {Quote} from '../../utils/constants';
-import styles from './Notes.module.css';
+import {Quote} from '../utils/constants';
+import styles from '../styles/Quotes.module.scss';
 
 export default function QuoteCard({data}: {data: Quote}) {
   const {title, content, created} = data || {};

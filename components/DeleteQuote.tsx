@@ -1,14 +1,15 @@
-'use client';
-
-import {useRouter} from 'next/navigation';
-import {fetchUrl} from '../../utils/constants';
+import {useRouter} from 'next/router';
 
 export default function DeleteQuote(params: any) {
   const router = useRouter();
+
   const deleteQuote = async () => {
-    fetch(`${fetchUrl}/api/quote/${params.id}`, {
+    await fetch(`/api/quoteById/${params.id}`, {
       method: 'DELETE',
-    }).then(() => router.refresh());
+    }).then(res => {
+      if (res.status !== 200) return;
+      router.replace(router.asPath);
+    });
   };
 
   return <button onClick={deleteQuote}>Delete</button>;

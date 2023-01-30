@@ -29,10 +29,11 @@ async function getQuotes(res: NextApiResponse) {
     id: doc.id,
     ...doc.data(),
   }));
-  res.status(200).send(quotesData);
+  await res.status(200).send(quotesData);
 }
 
 async function createQuote(req: NextApiRequest, res: NextApiResponse) {
   const collectionRef = collection(db, 'notes');
-  await addDoc(collectionRef, req.body).then(() => res.status(200).end());
+  await addDoc(collectionRef, req.body);
+  await res.status(200).end();
 }

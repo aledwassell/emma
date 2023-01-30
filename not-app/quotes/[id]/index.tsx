@@ -1,5 +1,12 @@
 import {fetchUrl} from '../../../utils/constants';
-import QuoteCard from '../QuoteCard';
+import QuoteCard from '../../../components/QuoteCard';
+import {GetServerSideProps} from 'next';
+
+// export const getServerSideProps: GetServerSideProps = async () => {
+//   const res = await fetch(`${fetchUrl}/api/quote`, {method: 'GET'});
+//   const quotes = await res.json();
+//   return {props: {quotes}};
+// };
 
 async function getQuote(id: string) {
   const res = await fetch(`${fetchUrl}/api/quote/${id}`, {

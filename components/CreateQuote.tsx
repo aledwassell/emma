@@ -1,4 +1,4 @@
-import {useRouter} from 'next/navigation';
+import {useRouter} from 'next/router';
 import {useState} from 'react';
 
 export default function CreateQuote() {
@@ -22,7 +22,7 @@ export default function CreateQuote() {
       setContent('');
       setTitle('');
 
-      router.refresh();
+      router.replace(router.asPath);
     });
   };
 

@@ -1,4 +1,4 @@
-import {useRouter} from 'next/navigation';
+import {useRouter} from 'next/router';
 
 export default function DeleteQuote(params: any) {
   const router = useRouter();
@@ -8,7 +8,7 @@ export default function DeleteQuote(params: any) {
       method: 'DELETE',
     });
 
-    router.refresh();
+    router.replace(router.asPath);
   };
 
   return <button onClick={deleteQuote}>Delete</button>;

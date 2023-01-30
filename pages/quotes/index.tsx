@@ -12,7 +12,7 @@ type Props = {
 
 export const getServerSideProps: GetServerSideProps = async () => {
   const url = `${fetchUrl}/api/quote`;
-  const res = await fetch(url, {method: 'GET'});
+  const res = await fetch(url, {method: 'GET', next: {revalidate: 10}});
   const quotes = await res.json();
   return {props: {quotes}};
 };

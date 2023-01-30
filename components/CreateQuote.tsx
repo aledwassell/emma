@@ -1,6 +1,5 @@
 import {useRouter} from 'next/navigation';
 import {useState} from 'react';
-import {fetchUrl} from '../utils/constants';
 
 export default function CreateQuote() {
   const [title, setTitle] = useState('');
@@ -9,7 +8,7 @@ export default function CreateQuote() {
   const router = useRouter();
 
   const create = async () => {
-    await fetch(`${fetchUrl}/api/quote`, {
+    await fetch(`/api/quote`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -32,12 +31,12 @@ export default function CreateQuote() {
       <h3>Create a new Quote</h3>
       <input
         type="text"
-        placeholder="Title"
+        placeholder="Author"
         value={title}
         onChange={e => setTitle(e.target.value)}
       />
       <textarea
-        placeholder="Content"
+        placeholder="Quote"
         value={content}
         onChange={e => setContent(e.target.value)}
       />

@@ -30,5 +30,6 @@ async function getById(res: NextApiResponse, id: string) {
 
 async function deleteById(res: NextApiResponse, id: string) {
   const docRef = await doc(db, 'notes', id);
-  await deleteDoc(docRef).then(() => res.status(200).end());
+  await deleteDoc(docRef);
+  res.status(200).end();
 }

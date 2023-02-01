@@ -25,11 +25,11 @@ export default async function handler(
 
 async function getById(res: NextApiResponse, id: string) {
   const note = await getDoc(doc(db, 'notes', id));
-  res.status(200).json({id: note.id, ...note.data()});
+  await res.status(200).json({id: note.id, ...note.data()});
 }
 
 async function deleteById(res: NextApiResponse, id: string) {
   const docRef = await doc(db, 'notes', id);
   await deleteDoc(docRef);
-  res.status(200).end();
+  await res.status(200).end();
 }

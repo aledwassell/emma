@@ -6,8 +6,7 @@ export default function DeleteQuote(params: any) {
   const deleteQuote = async () => {
     await fetch(`/api/quoteById/${params.id}`, {
       method: 'DELETE',
-    }).then(res => {
-      if (res.status !== 200) return;
+    }).then(() => {
       router.replace(router.asPath);
     });
   };

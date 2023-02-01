@@ -35,6 +35,5 @@ async function getQuotes(res: NextApiResponse) {
 async function createQuote(req: NextApiRequest, res: NextApiResponse) {
   const collectionRef = collection(db, 'notes');
   await addDoc(collectionRef, req.body);
-  console.log('asdfdf');
   await res.status(200).end();
 }

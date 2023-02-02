@@ -4,7 +4,6 @@ export default function Navbar() {
   return (
     <nav>
       <Link href="/">Home</Link>
-      <Link href="/quotes">Quotes</Link>
     </nav>
   );
 }

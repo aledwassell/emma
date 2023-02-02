@@ -9,7 +9,7 @@ export default function QuotePage() {
   const [isLoading, setLoading] = useState(false);
   useEffect(() => {
     setLoading(true);
-    fetch(`/api/quoteById/${id}`, {
+    fetch(`/api/quote/${id}`, {
       method: 'GET',
     })
       .then(res => res.json())

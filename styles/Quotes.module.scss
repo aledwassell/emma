@@ -1,66 +1,55 @@
-.pageTitle {
-  margin: 0;
-  line-height: 1.15;
-  font-size: 4rem;
-}
-
 .grid {
-  margin-top: 2rem;
-  display: flex;
   align-items: flex-start;
-  justify-content: flex-start;
+  display: flex;
   flex-wrap: wrap;
+  justify-content: flex-start;
+  margin-top: 2rem;
   max-width: 1000px;
 }
 
-.action {
-  text-align: left;
-  color: dodgerblue;
-}
-
-.note {
-  height: auto;
-  width: 200px;
-  padding: 0.2rem 1rem;
+.card {
+  background: #ff4f52;
+  border-radius: 30px;
+  color: #fff;
   margin: 0.5rem;
-  background: #ffff00;
-  box-shadow: 4px 4px 8px 1px #00000075;
-  border-radius: 2px;
-}
-
-.container {
-  padding: 0 2rem;
+  padding: 2rem 1rem;
 }
 
 .pageTitle {
-  margin: 0;
+  @extend .card;
+  font-size: 2rem;
   line-height: 1.15;
-  font-size: 3rem;
 }
 
-.note {
+.quote {
+  @extend .card;
+  font-size: 1.6em;
+  font-weight: 900;
   height: auto;
-  width: 200px;
-  padding: 0.25rem;
-  border-radius: 2px;
-}
+  width: 400px;
+  letter-spacing: 0.5px;
+  line-height: 35px;
+  text-align: center;
 
-.title {
-  padding: 0.1rem;
-  font-size: 1rem;
-}
+  p {
+    span {
+      color: #ffc4c9;
+      font-size: 2em;
+    }
+  }
 
-.content {
-  font-size: 0.9rem;
-  font-weight: normal;
-}
+  .image {
+    border-radius: 50%;
+    object-fit: cover;
+    width: 222px;
+  }
 
-.created {
-  font-size: 0.7rem;
-  font-weight: lighter;
-}
-
-.action {
-  text-align: left;
-  color: dodgerblue;
+  .author {
+    color: #ffc4c9;
+    font-size: 0.6em;
+    font-style: normal;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    line-height: 15px;
+  }
 }

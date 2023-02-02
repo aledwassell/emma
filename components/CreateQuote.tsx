@@ -28,7 +28,7 @@ export default function CreateQuote() {
 
   return (
     <form onSubmit={create}>
-      <h3>Create a new Quote</h3>
+      <h3>Create a new quote</h3>
       <input
         type="text"
         placeholder="Author"

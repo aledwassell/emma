@@ -1,4 +1,4 @@
-import QuoteCard from '../../components/QuoteCard';
+import QuoteCard from '../components/QuoteCard';
 import {useEffect, useState} from 'react';
 import {useRouter} from 'next/router';
 

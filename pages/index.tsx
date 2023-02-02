@@ -1,12 +1,39 @@
-import Head from 'next/head';
+import CreateQuote from 'components/CreateQuote';
+import DeleteQuote from 'components/DeleteQuote';
+import QuoteCard from 'components/QuoteCard';
+import {GetServerSideProps} from 'next';
+import Link from 'next/link';
 import styles from '../styles/Home.module.scss';
+import {fetchUrl, Quote} from '../utils/constants';
 
-export default function Home() {
+type Props = {
+  quotes: readonly Quote[];
+};
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  const url = `${fetchUrl}/api/quote`;
+  const res = await fetch(url, {method: 'GET', next: {revalidate: 10}});
+  const quotes = await res.json();
+  return {props: {quotes}};
+};
+
+export default function Home({quotes}: Props) {
   return (
-    <div className={styles.container}>
-      <main className={styles.main}>
-        <h1>Home Dir</h1>
-      </main>
+    <div>
+      <h1>Quotes!!</h1>
+      <div className={styles.grid}>
+        {quotes?.map((quote: any) => {
+          return (
+            <div key={quote.id}>
+              <Link href={`/quotes/${quote.id}`}>
+                <QuoteCard data={quote} />
+              </Link>
+              <DeleteQuote id={quote.id} />
+            </div>
+          );
+        })}
+      </div>
+      <CreateQuote />
     </div>
   );
 }

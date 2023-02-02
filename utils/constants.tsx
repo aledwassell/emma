@@ -1,5 +1,5 @@
-export const fetchUrl = 'https://emma-aledwassell.vercel.app';
-// export const fetchUrl = 'http://localhost:3000';
+// export const fetchUrl = 'https://emma-aledwassell.vercel.app';
+export const fetchUrl = 'http://localhost:3000';
 
 export interface Quote {
   id: string;
@@ -7,3 +7,5 @@ export interface Quote {
   content: string;
   created: string;
 }
+
+export const FIREBASE_COLLECTION_NAME = 'quotes';

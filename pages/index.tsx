@@ -3,8 +3,9 @@ import DeleteQuote from 'components/DeleteQuote';
 import QuoteCard from 'components/QuoteCard';
 import {GetServerSideProps} from 'next';
 import Link from 'next/link';
-import styles from '../styles/Home.module.scss';
+import styles from '../styles/Quotes.module.scss';
 import {fetchUrl, Quote} from '../utils/constants';
+import {philosopher} from './_app';
 
 type Props = {
   quotes: readonly Quote[];
@@ -20,15 +21,17 @@ export const getServerSideProps: GetServerSideProps = async () => {
 export default function Home({quotes}: Props) {
   return (
     <div>
-      <h1>Quotes!!</h1>
+      {/* <div className={styles.pageTitle}>
+        <h1 className={philosopher.className}>Aled's favourite quotes</h1>
+      </div> */}
       <div className={styles.grid}>
         {quotes?.map((quote: any) => {
           return (
             <div key={quote.id}>
-              <Link href={`/quotes/${quote.id}`}>
+              <Link href={`/${quote.id}`}>
                 <QuoteCard data={quote} />
               </Link>
-              <DeleteQuote id={quote.id} />
+              {!quote.image && <DeleteQuote id={quote.id} />}
             </div>
           );
         })}

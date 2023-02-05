@@ -1,11 +1,9 @@
 import CreateQuote from 'components/CreateQuote';
-import DeleteQuote from 'components/DeleteQuote';
 import QuoteCard from 'components/QuoteCard';
 import {GetServerSideProps} from 'next';
 import Link from 'next/link';
 import styles from '../styles/Quotes.module.scss';
 import {fetchUrl, Quote} from '../utils/constants';
-import {philosopher} from './_app';
 
 type Props = {
   quotes: readonly Quote[];
@@ -31,7 +29,6 @@ export default function Home({quotes}: Props) {
               <Link href={`/${quote.id}`}>
                 <QuoteCard data={quote} />
               </Link>
-              {!quote.image && <DeleteQuote id={quote.id} />}
             </div>
           );
         })}

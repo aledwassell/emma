@@ -19,10 +19,12 @@ export const philosopher = Philosopher({
 
 function MyApp({Component, pageProps}: AppProps) {
   return (
-    <main className={mulish.className}>
+    <>
       {/* <Navbar /> */}
-      <Component {...pageProps} />
-    </main>
+      <main className={mulish.className}>
+        <Component {...pageProps} />
+      </main>
+    </>
   );
 }
 

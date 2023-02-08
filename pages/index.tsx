@@ -1,4 +1,3 @@
-import CreateQuote from 'components/CreateQuote';
 import QuoteCard from 'components/QuoteCard';
 import {GetServerSideProps} from 'next';
 import Link from 'next/link';
@@ -17,23 +16,27 @@ export const getServerSideProps: GetServerSideProps = async () => {
 };
 
 export default function Home({quotes}: Props) {
+  const size = quotes.length;
+  const columns = [quotes.slice(0, size / 2), quotes.slice(size / 2, size)];
   return (
     <div>
-      {/* <div className={styles.pageTitle}>
-        <h1 className={philosopher.className}>Aled's favourite quotes</h1>
-      </div> */}
       <div className={styles.grid}>
-        {quotes?.map((quote: any) => {
+        {columns?.map((column: Quote[], index) => {
           return (
-            <div key={quote.id}>
-              <Link href={`/${quote.id}`}>
-                <QuoteCard data={quote} />
-              </Link>
+            <div key={index} className={styles.column}>
+              {column?.map((quote: Quote) => {
+                return (
+                  <div key={quote.id}>
+                    <Link href={`/${quote.id}`}>
+                      <QuoteCard data={quote} />
+                    </Link>
+                  </div>
+                );
+              })}
             </div>
           );
         })}
       </div>
-      <CreateQuote />
     </div>
   );
 }

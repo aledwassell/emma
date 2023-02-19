@@ -1,17 +1,30 @@
 .grid {
-  align-items: flex-start;
+  height: 100vh;
+  display: grid;
+  gap: 2rem;
+  max-width: 1200px;
+
+  @media (min-width: 600px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  overflow: hidden;
+}
+
+.column {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  margin-top: 2rem;
-  max-width: 1000px;
+  flex-direction: column;
+  gap: 2rem;
+  height: 100vh;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  overflow-y: scroll;
 }
 
 .card {
   background: #ff4f52;
   border-radius: 30px;
   color: #fff;
-  margin: 0.5rem;
   padding: 2rem 1rem;
 }
 
@@ -29,7 +42,6 @@
   letter-spacing: 0.5px;
   line-height: 35px;
   text-align: center;
-  width: 400px;
 
   p {
     span {

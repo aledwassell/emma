@@ -1,6 +1,5 @@
 import QuoteCard from 'components/QuoteCard';
 import {GetServerSideProps} from 'next';
-import Link from 'next/link';
 import styles from '../styles/Quotes.module.scss';
 import {fetchUrl, Quote} from '../utils/constants';
 
@@ -27,9 +26,7 @@ export default function Home({quotes}: Props) {
               {column?.map((quote: Quote) => {
                 return (
                   <div key={quote.id}>
-                    <Link href={`/${quote.id}`}>
-                      <QuoteCard data={quote} />
-                    </Link>
+                    <QuoteCard data={quote} />
                   </div>
                 );
               })}

@@ -8,9 +8,8 @@ export default function DeleteQuote(params: any) {
   const deleteQuote = async () => {
     await fetch(`/api/quote/${params.id}`, {
       method: 'DELETE',
-    }).then(() => {
-      router.replace(router.asPath);
     });
+    router.replace(router.asPath);
   };
 
   return (

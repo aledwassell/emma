@@ -20,7 +20,7 @@ export const philosopher = Philosopher({
 function MyApp({Component, pageProps}: AppProps) {
   return (
     <>
-      {/* <Navbar /> */}
+      <Navbar />
       <main className={mulish.className}>
         <Component {...pageProps} />
       </main>

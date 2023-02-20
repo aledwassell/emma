@@ -1,6 +1,7 @@
 import {NextApiRequest, NextApiResponse} from 'next';
 import {doc, getDoc, deleteDoc} from 'firebase/firestore';
 import db from '../../../utils/db';
+import {FIREBASE_COLLECTION_NAME} from 'utils/constants';
 
 export default async function handler(
   req: NextApiRequest,
@@ -24,12 +25,12 @@ export default async function handler(
 }
 
 async function getById(res: NextApiResponse, id: string) {
-  const note = await getDoc(doc(db, 'notes', id));
-  res.status(200).json({id: note.id, ...note.data()});
+  const note = await getDoc(doc(db, FIREBASE_COLLECTION_NAME, id));
+  await res.status(200).json({id: note.id, ...note.data()});
 }
 
 async function deleteById(res: NextApiResponse, id: string) {
-  const docRef = await doc(db, 'notes', id);
+  const docRef = await doc(db, FIREBASE_COLLECTION_NAME, id);
   await deleteDoc(docRef);
-  res.status(200).end();
+  await res.status(200).end();
 }

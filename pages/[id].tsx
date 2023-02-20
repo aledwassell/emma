@@ -1,4 +1,4 @@
-import QuoteCard from '../../components/QuoteCard';
+import QuoteCard from '../components/QuoteCard';
 import {useEffect, useState} from 'react';
 import {useRouter} from 'next/router';
 
@@ -9,7 +9,7 @@ export default function QuotePage() {
   const [isLoading, setLoading] = useState(false);
   useEffect(() => {
     setLoading(true);
-    fetch(`/api/quoteById/${id}`, {
+    fetch(`/api/quote/${id}`, {
       method: 'GET',
     })
       .then(res => res.json())

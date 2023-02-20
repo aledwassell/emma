@@ -2,8 +2,8 @@ import {useRouter} from 'next/router';
 import {useState} from 'react';
 
 export default function CreateQuote() {
-  const [title, setTitle] = useState('');
-  const [content, setContent] = useState('');
+  const [author, setTitle] = useState('');
+  const [quote, setContent] = useState('');
 
   const router = useRouter();
 
@@ -14,8 +14,8 @@ export default function CreateQuote() {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        title,
-        content,
+        author,
+        quote,
         created: new Date().toDateString(),
       }),
     }).then(() => {
@@ -28,16 +28,16 @@ export default function CreateQuote() {
 
   return (
     <form onSubmit={create}>
-      <h3>Create a new Quote</h3>
+      <h3>Create a new quote</h3>
       <input
         type="text"
         placeholder="Author"
-        value={title}
+        value={author}
         onChange={e => setTitle(e.target.value)}
       />
       <textarea
         placeholder="Quote"
-        value={content}
+        value={quote}
         onChange={e => setContent(e.target.value)}
       />
       <button type="submit">Create</button>

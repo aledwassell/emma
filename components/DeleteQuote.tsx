@@ -1,16 +1,22 @@
 import {useRouter} from 'next/router';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import styles from '../styles/Quotes.module.scss';
 
 export default function DeleteQuote(params: any) {
   const router = useRouter();
 
   const deleteQuote = async () => {
-    await fetch(`/api/quoteById/${params.id}`, {
+    await fetch(`/api/quote/${params.id}`, {
       method: 'DELETE',
-    }).then(res => {
-      if (res.status !== 200) return;
-      router.replace(router.asPath);
     });
+    router.replace(router.asPath);
   };
 
-  return <button onClick={deleteQuote}>Delete</button>;
+  return (
+    <>
+      <button className={styles.deleteButton} onClick={deleteQuote}>
+        <FontAwesomeIcon icon={['fas', 'trash']} />
+      </button>
+    </>
+  );
 }

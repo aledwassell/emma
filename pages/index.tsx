@@ -1,12 +1,39 @@
-import Head from 'next/head';
-import styles from '../styles/Home.module.scss';
+import QuoteCard from 'components/QuoteCard';
+import {GetServerSideProps} from 'next';
+import styles from '../styles/Quotes.module.scss';
+import {fetchUrl, Quote} from '../utils/constants';
 
-export default function Home() {
+type Props = {
+  quotes: readonly Quote[];
+};
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  const url = `${fetchUrl}/api/quote`;
+  const res = await fetch(url, {method: 'GET', next: {revalidate: 10}});
+  const quotes = await res.json();
+  return {props: {quotes}};
+};
+
+export default function Home({quotes}: Props) {
+  const size = quotes.length;
+  const columns = [quotes.slice(0, size / 2), quotes.slice(size / 2, size)];
   return (
-    <div className={styles.container}>
-      <main className={styles.main}>
-        <h1>Home Dir</h1>
-      </main>
+    <div>
+      <div className={styles.grid}>
+        {columns?.map((column: Quote[], index) => {
+          return (
+            <div key={index} className={styles.column}>
+              {column?.map((quote: Quote) => {
+                return (
+                  <div key={quote.id}>
+                    <QuoteCard data={quote} />
+                  </div>
+                );
+              })}
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }

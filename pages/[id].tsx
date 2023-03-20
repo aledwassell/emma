@@ -1,12 +1,13 @@
 import QuoteCard from '../components/QuoteCard';
-import {useEffect, useState} from 'react';
-import {useRouter} from 'next/router';
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
 
 export default function QuotePage() {
   const router = useRouter();
-  const id = router.query.id as string;
+  const { id } = router.query;
   const [quote, setQuote] = useState(null);
   const [isLoading, setLoading] = useState(false);
+
   useEffect(() => {
     setLoading(true);
     fetch(`/api/quote/${id}`, {
@@ -17,7 +18,7 @@ export default function QuotePage() {
         setQuote(quote);
         setLoading(false);
       });
-  }, []);
+  }, [id]);
 
   if (isLoading) return <p>Loading...</p>;
   if (!quote) return <p>No profile data</p>;

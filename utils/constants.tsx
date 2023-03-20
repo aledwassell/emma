@@ -1,5 +1,5 @@
-export const fetchUrl = 'https://inspire-quotes-aledwassell.vercel.app';
-// export const fetchUrl = 'http://localhost:3000';
+export const FETCH_URL = 'https://inspire-quotes-aledwassell.vercel.app';
+export const AUTO_GEN_API = 'https://aled-testing.lm.r.appspot.com';
 
 export interface QuoteImage {
   alt: string;

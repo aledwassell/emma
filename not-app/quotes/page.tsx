@@ -3,10 +3,10 @@ import styles from './Notes.module.css';
 import QuoteCard from '../../components/QuoteCard';
 import CreateQuote from '../../components/CreateQuote';
 import DeleteQuote from '../../components/DeleteQuote';
-import {fetchUrl, Quote} from '../../utils/constants';
+import { FETCH_URL, Quote } from '../../utils/constants';
 
 async function getQuotes(): Promise<Quote[]> {
-  const res = await fetch(`${fetchUrl}/api/quote`, {method: 'GET'});
+  const res = await fetch(`${FETCH_URL}/api/quote`, { method: 'GET' });
   const data = await res.json();
   return data;
 }

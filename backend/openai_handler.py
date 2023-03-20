@@ -12,6 +12,11 @@ def generate_quote():
         ]
     )
 
-    quote, author = completion.choices[0].message.content.replace('"', '').split(' - ')
+    quote_content = completion.choices[0].message.content
+
+    if len(quote_content) == 0:
+        return ""
+
+    quote, author = quote_content.replace('"', '').split(' - ')
 
     return dotdict({"quote": quote, "author": author})

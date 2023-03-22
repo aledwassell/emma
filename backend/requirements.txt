@@ -1,4 +1,6 @@
 Flask==2.1.0
 google-cloud-datastore==2.7.1
+google-cloud-storage==2.7.0
 openai==0.27.2
 google-cloud-secret-manager==2.16.0
+urllib3==1.26.15

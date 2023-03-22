@@ -1,18 +1,18 @@
-import {Quote} from '../utils/constants';
+import { Quote } from '../utils/constants';
 import styles from '../styles/Quotes.module.scss';
-import {philosopher} from 'pages/_app';
+import { philosopher } from 'pages/_app';
 import Image from 'next/image';
 import DeleteQuote from './DeleteQuote';
 
-export default function QuoteCard({data}: {data: Quote}) {
-  const {id, author, quote, image} = data || {};
+export default function QuoteCard({ data }: { data: Quote }) {
+  const { id, author, quote, image } = data || {};
 
   return (
     <div className={styles.quote}>
       {image && (
         <Image
           className={styles.image}
-          src={`/${image.url}.jpg`}
+          src={image.url}
           alt={image.alt}
           width={image.width}
           height={image.height}

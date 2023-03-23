@@ -14,8 +14,17 @@ def root():
 @app.route('/quote')
 def quotes():
     quote_data = generate_quote()
+    quote_author_image_url = generate_quote_author_image(quote_data.author)
+    image_url = upload_image_from_url_to_google_storage(quote_author_image_url, quote_data.author.replace(' ', '_'))
     
-    data = store_quote(quote_data.quote, quote_data.author, datetime.datetime.now(tz=datetime.timezone.utc))
+    image = {
+        'height': 256,
+        'width': 256,
+        'url': image_url,
+        'alt': quote_data.author,
+    }
+
+    data = store_quote(quote_data.quote, quote_data.author, datetime.datetime.now(tz=datetime.timezone.utc), image)
 
     return jsonify(data)
 

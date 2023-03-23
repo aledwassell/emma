@@ -20,3 +20,17 @@ def generate_quote():
     quote, author = quote_content.replace('"', '').split(' - ')
 
     return dotdict({"quote": quote, "author": author})
+
+def generate_quote_author_image(author_name):
+    image_data = openai.Image.create(
+        prompt="A portrait photograph of " + author_name,
+        n=2,
+        size="256x256"
+    )
+
+    image_url = image_data.data[0].url
+
+    if len(image_url) == 0:
+        return ""
+
+    return image_url
